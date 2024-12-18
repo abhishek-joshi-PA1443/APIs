@@ -13,3 +13,31 @@ class Employee(Base):
     password = Column(String(20), index=True)
     role = Column(String, index=True)
     manager_id = Column(Integer, ForeignKey("employees.id"), nullable=True)
+
+
+class EmployeeCreate(BaseModel):
+    name : str
+    email : str
+    password : str
+    role : str
+    manager_id : int | None=None
+
+
+class EmployeeResponse(BaseModel):
+    id :int
+    name : str
+    email : str
+    password : str
+    role : str
+    manager_id : int
+
+    class Config:
+        orm_mode = True
+
+
+class EmployeeUpdate(BaseModel):
+    role : str
+    manager_id : int
+
+    class Config:
+        orm_mode = True
